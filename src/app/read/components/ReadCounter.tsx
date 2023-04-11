@@ -4,7 +4,7 @@ import { bookList } from "@/utils/brandon_books";
 import BookMin from "../../books/components/BookMin";
 
 export default function ReadCounter(){
-    const count = useAppSelector((state) => state.wishesReducer.value);
+    const count = useAppSelector((state) => state.readReducer.value);
     return(
         <>
         <span>{count.length} / {bookList.length}</span>

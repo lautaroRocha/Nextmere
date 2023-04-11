@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import wishesReducer from "./features/wishesSlice";
+import readReducer from "./features/readSlice";
 
 export const store = configureStore({
-  reducer: {wishesReducer},
+  reducer: {readReducer},
   devTools: process.env.NODE_ENV !== "production",
 });
 

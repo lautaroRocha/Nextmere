@@ -2,7 +2,7 @@
 
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks"
 import Link from "next/link"
-import { add, remove } from "../../../redux/features/wishesSlice"
+import { add, remove } from "../../../redux/features/readSlice"
 import { useState, useEffect } from "react"
 
 
@@ -11,7 +11,7 @@ export default function BookMin({book}:any){
     const [isWished, setIsWished] = useState(false)
     const dispatch = useAppDispatch()
 
-    const wishList = useAppSelector((state)=>  state.wishesReducer.value)
+    const wishList = useAppSelector((state)=>  state.readReducer.value)
     
     const sendToWishList = () => {
         dispatch(add(book))

@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type WishesState = {
+type ReadState = {
   value: [] ;
 };
 
 const initialState = {
   value: [],
-} as WishesState;
+} as ReadState;
 
-export const wishes = createSlice({
-  name: "wishes",
+export const read = createSlice({
+  name: "read",
   initialState,
   reducers: {
     reset: () => initialState,
@@ -29,5 +29,5 @@ export const {
   add,
   remove,
   reset,
-} = wishes.actions;
-export default wishes.reducer;
+} = read.actions;
+export default read.reducer;
