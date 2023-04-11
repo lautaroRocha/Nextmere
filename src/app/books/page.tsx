@@ -1,13 +1,12 @@
 import BookList from './components/BooksList'
 import styles from '../styles/page.module.css'
+import BooksFilter from './components/BooksFilter'
 
 
 export default async function Products (){
     return (
         <>
-            <div className={styles.center}>
-                <h1 >Productos</h1>
-            </div>
+            <BooksFilter />
             <div className={styles.grid}>
                <BookList />
             </div>
