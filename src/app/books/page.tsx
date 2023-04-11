@@ -1,4 +1,4 @@
-import ProducstList from './components/ProductsList'
+import BookList from './components/BooksList'
 import styles from '../styles/page.module.css'
 
 
@@ -9,7 +9,7 @@ export default async function Products (){
                 <h1 >Productos</h1>
             </div>
             <div className={styles.grid}>
-               <ProducstList />
+               <BookList />
             </div>
         </>
     )

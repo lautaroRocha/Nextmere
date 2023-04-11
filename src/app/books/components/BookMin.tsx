@@ -32,7 +32,7 @@ export default function BookMin({book}:any){
 
     return(
         <>
-        <Link href={`products/${book.id}`}>  
+        <Link href={`books/${book.id}`}>  
         <article key={book.id}>
             <span>{book.title}</span>
             <img src={book.cover} alt={book.title} />

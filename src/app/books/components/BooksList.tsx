@@ -9,7 +9,7 @@ async function fetchBooks(){
   return res.json()
 }
 
-export default async function ProducstList(): Promise<JSX.Element> {
+export default async function BooksList(): Promise<JSX.Element> {
     const {books} = await fetchBooks()
 
     return books.map((pr: any) => (
