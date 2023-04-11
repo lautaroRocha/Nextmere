@@ -1,14 +1,13 @@
 'use client'
-
-import { add, remove, reset } from "../../../redux/features/wishesSlice";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { useAppSelector } from "../../../redux/hooks";
+import { bookList } from "@/utils/brandon_books";
 import BookMin from "../../books/components/BookMin";
 
-export default function WishCounter(){
+export default function ReadCounter(){
     const count = useAppSelector((state) => state.wishesReducer.value);
     return(
         <>
-        <span>{count.length}</span>
+        <span>{count.length} / {bookList.length}</span>
         {count.map((pr, idx)=> <BookMin book={pr} key={idx}/> )}
         </>
     )
