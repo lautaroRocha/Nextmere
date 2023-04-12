@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import wishesReducer from "./features/wishesSlice";
+import readReducer from "./features/readSlice";
+import searchReducer from "./features/searchSlice";
 
 export const store = configureStore({
-  reducer: {wishesReducer},
+  reducer: {readReducer, searchReducer},
   devTools: process.env.NODE_ENV !== "production",
 });
 
