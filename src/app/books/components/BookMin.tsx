@@ -1,33 +1,32 @@
-'use client'
-
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks"
 import Link from "next/link"
 import { add, remove } from "../../../redux/features/readSlice"
 import { useState, useEffect } from "react"
+import Image from "next/image"
 
 
 export default function BookMin({book}:any){
 
-    const [isWished, setIsWished] = useState(false)
+    const [isRead, setIsRead] = useState(false)
     const dispatch = useAppDispatch()
 
-    const wishList = useAppSelector((state)=>  state.readReducer.value)
+    const readList = useAppSelector((state)=>  state.readReducer.value)
     
-    const sendToWishList = () => {
+    const sendToReadList = () => {
         dispatch(add(book))
     }
 
-    const removeFromWishList = () => {
+    const removeFromReadList = () => {
         dispatch(remove(book))
     }
 
     useEffect(()=>{
-        setIsWished(false)
-        const isWished = wishList.find((prod : any) => prod.id === book.id)
-        if(isWished){
-            setIsWished(true)
+        setIsRead(false)
+        const isRead = readList.find((prod : any) => prod.id === book.id)
+        if(isRead){
+            setIsRead(true)
         }
-    }, [sendToWishList, removeFromWishList])
+    }, [sendToReadList, removeFromReadList])
 
 
     return(
@@ -35,12 +34,12 @@ export default function BookMin({book}:any){
         <Link href={`books/${book.id}`}>  
         <article key={book.id}>
             <span>{book.title}</span>
-            <img src={book.cover} alt={book.title} />
+            <Image src={book.cover} alt={book.title} width={250} height={500}/>
         </article>
         </Link> 
         <div>
-            <button onClick={sendToWishList} disabled={isWished}>ADD</button>
-            <button onClick={removeFromWishList} disabled={!isWished}>REMOVE</button>
+            <button onClick={sendToReadList} disabled={isRead}>ADD</button>
+            <button onClick={removeFromReadList} disabled={!isRead}>REMOVE</button>
         </div>
         </>
     )

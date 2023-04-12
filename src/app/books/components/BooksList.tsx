@@ -1,20 +1,32 @@
+'use client'
 
 import BookMin from './BookMin';
+import { useAppSelector} from '@/src/redux/hooks';
+import { useState, useEffect, useMemo } from 'react';
 
-async function fetchBooks(){
-  const res = await fetch("http://localhost:3000/api/books")
-  if(!res.ok){
-    throw new Error('Failed to fetch')
-  }
-  return res.json()
-}
 
-export default async function BooksList(): Promise<JSX.Element> {
-    const {books} = await fetchBooks()
+export default function BooksList({books}): Promise<JSX.Element> {
 
-    return books.map((pr: any) => (
-      <>
-        <BookMin book={pr} />
-      </>
-    ))
+  const [filteredBooks, setFilteredBooks] = useState(books);
+  const searchedInput = useAppSelector((state)=>state.searchReducer.search)
+  const searchedSaga = useAppSelector((state)=>state.searchReducer.saga) 
+
+    useEffect(()=>{
+      if(searchedSaga){
+        setFilteredBooks(books.filter((book) => book.saga === searchedSaga))
+      }else{
+        setFilteredBooks(books)
+      }
+    }, [searchedSaga])
+
+    useEffect(()=>{
+      if(searchedInput){
+        setFilteredBooks([...filteredBooks].filter((book) => book.title.toLowerCase().includes(searchedInput)))
+      }else{
+        setFilteredBooks([...filteredBooks])
+      } 
+    }, [searchedInput])
+ 
+
+    return filteredBooks.map((pr: any, index:any) => <BookMin book={pr} key={index}/>)
 }

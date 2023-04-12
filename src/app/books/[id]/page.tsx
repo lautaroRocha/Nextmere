@@ -1,16 +1,8 @@
+import { fetchSingleBook } from "../services/fetchBooks"
 
-
-async function fetchProduct(id:number) {
-    const res = await fetch("http://localhost:3000/api/books?id="+id);
-    if (!res.ok) {
-      throw new Error('Failed to fetch data');
-    }
-    return res.json();
-  }
-
-export default async function ProductDetail({params} : { params: { id: number } }){
+export default async function ProductDetail({params} : { params: { id: String } }){
     const {id} = params
-    const {books} = await fetchProduct(id)
+    const {books} = await fetchSingleBook(id)
     return(
         <>
             <div >

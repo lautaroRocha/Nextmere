@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import readReducer from "./features/readSlice";
+import searchReducer from "./features/searchSlice";
 
 export const store = configureStore({
-  reducer: {readReducer},
+  reducer: {readReducer, searchReducer},
   devTools: process.env.NODE_ENV !== "production",
 });
 
