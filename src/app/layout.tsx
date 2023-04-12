@@ -35,7 +35,7 @@ export default function RootLayout({
       <ul >
         {PAGES_LINKS.map((page, idx) => {
           return(
-            <Link href={page.link} key={idx}>
+            <Link href={page.link} key={idx} replace={true}>
             <li>{page.title}</li>
           </Link>
           )})}

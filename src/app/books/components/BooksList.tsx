@@ -13,17 +13,34 @@ export default function BooksList({books}): Promise<JSX.Element> {
 
     useEffect(()=>{
       if(searchedSaga){
-        setFilteredBooks(books.filter((book) => book.saga === searchedSaga))
+        if(searchedInput){
+          setFilteredBooks([...filteredBooks].filter((book) => book.saga === searchedSaga))
+        }else{
+          setFilteredBooks(books.filter((book) => book.saga === searchedSaga))
+        }
       }else{
-        setFilteredBooks(books)
+        if(searchedInput){
+          setFilteredBooks(books.filter((book) => book.title.toLowerCase().includes(searchedInput)))
+        }else{
+          setFilteredBooks(books)
+        }
       }
     }, [searchedSaga])
 
     useEffect(()=>{
       if(searchedInput){
-        setFilteredBooks([...filteredBooks].filter((book) => book.title.toLowerCase().includes(searchedInput)))
+        if(searchedSaga){
+          setFilteredBooks([...filteredBooks].filter((book) => book.title.toLowerCase().includes(searchedInput)))
+        }else{
+          setFilteredBooks(books.filter((book) => book.title.toLowerCase().includes(searchedInput)))
+        }
       }else{
-        setFilteredBooks([...filteredBooks])
+        if(searchedSaga){
+          setFilteredBooks(books.filter((book) => book.saga === searchedSaga))
+        }else{
+          setFilteredBooks(books)
+
+        }
       } 
     }, [searchedInput])
  
